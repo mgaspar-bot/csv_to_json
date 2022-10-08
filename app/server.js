@@ -1,11 +1,12 @@
 const express = require('express');
 const app = express();
-const exec = require('child_process').exec;
 
 
 const storeFileInDisk = require('./Middlewares/storeFileInDisk');
 const extractLinesArrayFromFile = require('./Middlewares/extractLinesArrayFromFile');
-const getJsonsFromLines = require('./Middlewares/getJsonsFromLines')
+const getJsonsFromLines = require('./Middlewares/getJsonsFromLines');
+const extractStringFromFile = require('./Middlewares/extractStringFromFile');
+const storeEnclosedFields = require('./Middlewares/storeEnclosedFields');
 
 /*
 La idea es la seguent:
@@ -15,20 +16,17 @@ La idea es la seguent:
 */
 app.post('/upload',[
     storeFileInDisk, 
-    extractLinesArrayFromFile, 
+    extractStringFromFile,
+    storeEnclosedFields,
+    // extractLinesArrayFromFile,
     getJsonsFromLines ],
     (req, res) => {
-        if (req.body.store !== "true") exec(`rm -f ${req.file.path}`);
-        
+
+            
+        console.log(`I'm in the controller`);
         res.status(200).send(req.parsedFile)
     
     
 });
-
-
-
-
-
-
 
 app.listen(3000,() => console.log(`Server escoltant al port 3000`))
