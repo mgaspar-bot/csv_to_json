@@ -7,7 +7,7 @@ const extractStringFromFile = require('./Middlewares/extractStringFromFile');
 const storeEnclosedFields = require('./Middlewares/storeEnclosedFields');
 
 
-app.post('/upload',[
+app.post('/',[
     storeFileInDisk, 
     extractStringFromFile,
     storeEnclosedFields,
