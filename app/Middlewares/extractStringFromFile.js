@@ -6,10 +6,10 @@ function extractStringFromFile (req, res, next) {
         //get string with the whole file
         let path = req.file.path;
         let str = readFileSync(path);
-        req.file["parsedFile"] = str.toString('utf-8');
+        req.file["parsedFile"] = str.toString('utf-8');//No ho he provat amb altres encodings
                 
-        if (req.body.store !== "true") //Esborra la file del meu disk a no ser que m'hagis demanat que no especificament
-            exec(`rm -f ${req.file.path}`);
+        // if (req.body.store !== "true") //Esborra la file del meu disk a no ser que m'hagis demanat que no especificament
+        exec(`rm -f ${req.file.path}`);
 
         next();
         
@@ -18,7 +18,7 @@ function extractStringFromFile (req, res, next) {
         console.log();
         console.log(error.stack);
         res.status(500).json({
-            "msg":"something went wrong reading the already uploaded file"
+            "msg":"something went wrong reading the already uploaded file, or the file didnt upload"
         });
     }
     

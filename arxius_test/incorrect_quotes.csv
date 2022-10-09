@@ -1,0 +1,5 @@
+Personatge, Frase
+Rajoy, "aquesta frase te un espai abans de la coma"
+DaVinci,"aquesta frase te cometes "soles" dins de cometes"
+Belen Esteban,"aquesta ""frase"" te un espai abans del salt de linia" 
+Stalin,"aquesta frase es correcta perque te les cometes ""escapades"" i les cometes començen al delimitador anterior (la coma) i acaben al següent (la end of file)"

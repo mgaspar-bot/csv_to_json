@@ -14,10 +14,7 @@ const fileFilter = function (req, file, cb) {
         if (file.mimetype === 'text/csv') {
             cb(null, true);
         } else {
-            // cb(null, false); //Simplement no escriu res a req.file, aixi que despres no s'hi pot accedir; per això dona error
-                                //Molt util si vulgues acceptar varies files pq em pillaria les bones nomes, pero com que nomes vull
-                                //acceptar una file, en tinc prou amb que m'avisi i pari l'execucio
-            req.res.status(403).json({
+            req.res.status(400).json({
                 "msg":"only 'text/csv' mimetypes accepted"
             });
             return;
